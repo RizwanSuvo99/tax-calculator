@@ -1,5 +1,5 @@
 // Tax-desh
-// ------------------------------------------------------------------------
+// ---------------------------
 // 3000 USD -> free
 // 6000 USD -> 5%
 // 10,000 USD -> 15%
@@ -61,7 +61,6 @@ function taxCalculator(num) {
       tax += taxCalc(amount, maxPertng);
     }
   }
-
   return tax < 50 ? (tax == 0 ? 0 : 50) : tax;
 }
 // travel allowance -> 500 USD without tax; above that -> add with income
