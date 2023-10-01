@@ -42,10 +42,11 @@ function taxCalculator(num) {
     { income: 20000, taxParentage: 25 },
   ];
   let maxPertng = 30;
-  let amount = num - taxRateByIncome[0].income; //3000 - 3000 = 0
+  let amount = num - taxRateByIncome[0].income;
 
   for (let i = 0; i < taxRateByIncome.length - 1; i++) {
     if (amount <= 0) break;
+
     let curSlab = taxRateByIncome[i + 1].income - taxRateByIncome[i].income;
     let pertg = taxRateByIncome[i + 1].taxParentage;
     if (amount > curSlab) {
@@ -55,16 +56,14 @@ function taxCalculator(num) {
     }
     tax += taxCalc(curSlab, pertg);
     amount -= curSlab;
+
     if (i == taxRateByIncome.length - 2 && amount > 0) {
-      console.log(amount);
       tax += taxCalc(amount, maxPertng);
     }
   }
 
-  return tax < 50 ? (tax <= 0 ? 0 : 50) : tax;
+  return tax < 50 ? (tax == 0 ? 0 : 50) : tax;
 }
-
-// ------------------------------------------------------------------------
 // travel allowance -> 500 USD without tax; above that -> add with income
 // medical allowance -> 300 USD without tax; above that -> add with income
 // housing allowance -> 1000 USD without tax; above that -> add with income
